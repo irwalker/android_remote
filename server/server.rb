@@ -1,21 +1,32 @@
 require 'sinatra'
-require 'json'
 
 #Routes handling app
 
-class RemoteServer < Sinatra::Base
 
-	get '/turn_off' do
-		'shutting system down...'
-		#system 'shutdown -P +0'
-	end
-
-	get '/volume_up' do
-		'turn volume up... (Windows?)'
-	end
-
-	get '/volume_down' do
-		'turn volume down (Windows?)'
-	end
-
+get '/' do
+	"Hello World"
 end
+
+get '/turn_off' do
+	system 'shutdown -s'	
+	'shutting system down'
+end
+
+post '/volume:vol' do |v| 
+	'turn volume up... (Windows?)'
+end
+
+get '/volume' do
+	'turn volume down (Windows?)'
+end
+
+get '/volume/mute' do 
+	system 'bin/nircmd.exe mutesysvolume 1'
+	'muted'
+end
+
+get '/volume/unmute' do 
+	system 'bin/nircmd.exe mutesysvolume 0'
+	'unmuted'
+end
+
