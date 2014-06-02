@@ -27,6 +27,10 @@ class Client
 		RestClient.get 'http://localhost:4567/volume/unmute'
 	end
 
+	def Client.send_key_press(key)
+		RestClient.post 'http://localhost:4567/keypress', :key => key
+	end
+
 end
 
 puts Client::get_volume
@@ -35,3 +39,4 @@ puts Client::unmute
 puts Client::set_volume(10000)
 puts Client::mute
 puts Client::volume_up
+puts Client::send_key_press("VK_SPACE")

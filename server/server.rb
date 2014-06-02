@@ -25,8 +25,7 @@ end
 
 #Set the volume to a value
 post '/volume' do
-	volume = params[:vol]
-	puts "volume: #{volume}"
+	volume = params[:vol]	
 	system "bin/nircmd.exe setsysvolume #{volume}"
 	"set volume to #{volume}"	
 end
@@ -48,3 +47,9 @@ get '/volume/unmute' do
 	'unmuted'
 end
 
+#send key press to the system
+post '/keypress' do 
+	key = params[:key]
+	system "bin/nircmd.exe sendkeypress #{key}"
+	"entered key #{key}"
+end
