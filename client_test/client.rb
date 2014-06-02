@@ -1,5 +1,6 @@
 require 'rest_client'
 
+#Basic Test client for sinatra server.
 class Client
 
 	def Client.get_volume
@@ -7,7 +8,15 @@ class Client
 	end
 
 	def Client.set_volume(vol)
-		RestClient.post 'http://localhost:4567/volume', {:params => {:vol => "#{vol}"}}
+		RestClient.post 'http://localhost:4567/volume', :vol => vol
+	end
+
+	def Client.volume_up
+		RestClient.get 'http://localhost:4567/volumeup'
+	end
+
+	def Client.volume_down
+		RestClient.get 'http://localhost:4567/volumedown'
 	end
 
 	def Client.mute
@@ -23,5 +32,6 @@ end
 puts Client::get_volume
 puts Client::mute
 puts Client::unmute
+puts Client::set_volume(10000)
 puts Client::mute
-#Client::set_volume(1000)
+puts Client::volume_up
